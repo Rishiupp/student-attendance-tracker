@@ -36,7 +36,7 @@ public class StudentController {
         return studentService.getStudent(id);
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteStudent(@PathVariable int id) {
         studentService.deleteStudent(id);
         return "Student with Id: " + id + " deleted";
@@ -50,6 +50,16 @@ public class StudentController {
         } else {
             return "Student with Id: " + id + " is unavailable";
         }
+    }
+
+    @GetMapping("/major/{major}")
+    public List<StudentModel> getStudentsByMajor(@PathVariable String major) {
+        return studentService.getStudentsByMajor(major);
+    }
+
+    @GetMapping("/top")
+    public List<StudentModel> getTopStudents(@RequestParam(defaultValue = "3.5") Double minGpa) {
+        return studentService.getTopStudents(minGpa);
     }
 
 }
