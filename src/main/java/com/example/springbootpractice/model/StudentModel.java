@@ -15,4 +15,6 @@ public class StudentModel {
     private String email;
     public String address;
     private int age;
+    private String major;
+    private Double gpa;
 }
