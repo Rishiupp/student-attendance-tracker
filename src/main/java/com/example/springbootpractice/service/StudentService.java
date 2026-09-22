@@ -43,22 +43,36 @@ public class StudentService {
             if (studentModel.getFirstName() != null) {
                 oldData.setFirstName(studentModel.getFirstName());
             }
-            if (studentModel.getFirstName() != null) {
-                oldData.setFirstName(studentModel.getFirstName());
+            if (studentModel.getLastName() != null) {
+                oldData.setLastName(studentModel.getLastName());
             }
-            if (studentModel.getFirstName() != null) {
-                oldData.setFirstName(studentModel.getFirstName());
+            if (studentModel.getEmail() != null) {
+                oldData.setEmail(studentModel.getEmail());
             }
-            if (studentModel.getFirstName() != null) {
-                oldData.setFirstName(studentModel.getFirstName());
+            if (studentModel.getAddress() != null) {
+                oldData.setAddress(studentModel.getAddress());
             }
-            if (studentModel.getFirstName() != null) {
-                oldData.setFirstName(studentModel.getFirstName());
+            if (studentModel.getAge() > 0) {
+                oldData.setAge(studentModel.getAge());
+            }
+            if (studentModel.getMajor() != null) {
+                oldData.setMajor(studentModel.getMajor());
+            }
+            if (studentModel.getGpa() != null) {
+                oldData.setGpa(studentModel.getGpa());
             }
 
             studentRepository.save(oldData);
         }
 
         return idFound;
+    }
+
+    public List<StudentModel> getStudentsByMajor(String major) {
+        return studentRepository.findByMajor(major);
+    }
+
+    public List<StudentModel> getTopStudents(Double minGpa) {
+        return studentRepository.findByGpaGreaterThanEqualOrderByGpaDesc(minGpa);
     }
 }
